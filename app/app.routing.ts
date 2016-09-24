@@ -1,10 +1,11 @@
 import {ModuleWithProviders} from "@angular/core";
-import {Route, RouterModule} from "@angular/router";
+import {Routes, RouterModule} from "@angular/router";
 
 import {HeroesComponent} from "./heroes.component";
 import {DashboardComponent} from "./dashboard.component";
+import {HeroDetailComponent} from "./hero-detail.component";
 
-const appRoutes: Route[] = [
+const appRoutes: Routes = [
     {
         path: '',
         redirectTo: '/dashboard',
@@ -17,6 +18,10 @@ const appRoutes: Route[] = [
     {
         path: 'dashboard',
         component: DashboardComponent
+    },
+    {
+        path: 'detail/:id',
+        component: HeroDetailComponent
     }
 ];
 

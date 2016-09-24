@@ -29,5 +29,6 @@ import {HeroService} from "./hero.service";
         AppComponent
     ]
 })
+
 export class AppModule {
 }
