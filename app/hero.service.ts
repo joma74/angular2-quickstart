@@ -43,9 +43,29 @@ export class HeroService {
 
     update(hero: Hero): Promise<Hero> {
         const url = `${this.heroesUrl}/${hero.id}`;
-        return this.http.put(url, JSON.stringify(hero), {headers : this.headers})
+        return this.http.put(url, JSON.stringify(hero),
+            {
+                headers: this.headers
+            }
+        )
             .toPromise()
             .then(() => hero)
+            .catch(this.handleError)
+            ;
+    }
+
+    create(name: string): Promise<Hero> {
+        return this.http.post(this.heroesUrl, JSON.stringify(
+            {
+                name: name
+            }
+            ),
+            {
+                headers: this.headers
+            }
+        )
+            .toPromise()
+            .then(response => response.json().data as Hero)
             .catch(this.handleError)
             ;
     }
