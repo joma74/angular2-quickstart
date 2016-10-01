@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Hero} from "./hero";
-import {Http, Headers} from "@angular/http";
+import {Http, Headers, Response} from "@angular/http";
 import "rxjs/add/operator/toPromise";
 
 @Injectable()
@@ -25,15 +25,17 @@ export class HeroService {
 
         return this.http.get(this.heroesUrl)//
             .toPromise()
-            .then(response => response.json().data as Hero[])
+            .then((r: Response) => r.json().data as Hero[])
             .catch(this.handleError);
     }
 
     getHeroesSlowly(): Promise<Hero[]> {
-        return new Promise<Hero[]>(resolve =>
-            setTimeout(resolve, 2000))
-            .then(() => this.getHeroes())
-            ;
+        return new Promise<Hero[]>(
+            resolve =>
+                setTimeout(resolve, 2000)
+        ).then(
+            () => this.getHeroes()
+        );
     }
 
     private handleError(error: any): Promise<any> {

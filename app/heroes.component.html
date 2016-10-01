@@ -4,7 +4,7 @@
     <button (click)="add(heroName.value); heroName.value=''">
         Add
     </button>
-</div>
+</div>tag
 <ul class="heroes">
     <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span>
